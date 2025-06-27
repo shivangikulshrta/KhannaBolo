@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎙️ Voice Recipe Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container" role="main" aria-label="Voice Recipe Assistant">
+    <header>
+      <h1>🎙️ Voice Recipe Assistant</h1>
+      <p class="tagline">Speak your dish &rarr; Get ingredients instantly with prices!</p>
+    </header>
+
+    <main>
+      <button id="speak-btn" onclick="startListening()" aria-label="Start voice recognition">
+        🎤 Speak Dish Name
+      </button>
+      <p id="spoken" class="spoken-text" aria-live="polite" aria-atomic="true"></p>
+
+      <section id="results" aria-live="polite" aria-atomic="true">
+        <h2>📝 Ingredients List</h2>
+        <ul id="ingredient-list" class="ingredient-list" role="list"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>Made with ❤️ by Girls Who Code!</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

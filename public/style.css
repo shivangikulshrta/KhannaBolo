@@ -1,0 +1,148 @@
+/* Reset and Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #ffe2e2, #fffaf0);
+  color: #333;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 700px;
+  width: 100%;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Headings */
+h1 {
+  font-size: 2.2rem;
+  color: #ff5e78;
+  margin-bottom: 8px;
+}
+
+.tagline {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Button Style */
+button {
+  background-color: #ff5e78;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+button:hover {
+  background-color: #e44c65;
+  transform: scale(1.05);
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50px;
+  background: rgba(255, 94, 120, 0.1);
+  z-index: -1;
+  animation: pulse 2s infinite;
+}
+
+/* Mic pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+/* Spoken text */
+.spoken-text {
+  margin-top: 20px;
+  font-style: italic;
+  color: #555;
+  min-height: 20px;
+}
+
+/* Results */
+#results {
+  margin-top: 30px;
+  text-align: left;
+}
+
+#results h2 {
+  color: #333;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+/* Ingredient list */
+.ingredient-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ingredient-list li {
+  background: #ffeef2;
+  margin: 10px 0;
+  padding: 12px 16px;
+  border-left: 5px solid #ff5e78;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #333;
+  animation: fadeIn 0.5s ease-in-out;
+  transition: transform 0.3s ease;
+}
+
+.ingredient-list li:hover {
+  background: #ffdee4;
+  transform: translateX(5px);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #999;
+}
