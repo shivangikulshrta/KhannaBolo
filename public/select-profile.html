@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khaana Bolo - Select Profile</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff0f4, #ffe2e2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #ff4d6d;
+      margin-bottom: 40px;
+      animation: slideDown 1s ease-in-out forwards;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+  .profile-grid {
+  display: flex;
+  flex-direction: row; /* horizontal */
+  flex-wrap: nowrap;   /* no wrapping */
+  justify-content: center;
+  gap: 30px;
+  overflow-x: auto;
+  padding: 10px;
+  max-width: 100%;
+}
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .profile-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 50%;
+      width: 160px;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .profile-card:hover {
+      transform: scale(1.15) rotate(-2deg);
+      box-shadow: 0 10px 30px rgba(255, 94, 120, 0.4);
+    }
+
+    .profile-card img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 3px solid #ff5e78;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .profile-card p {
+      font-weight: bold;
+      color: #444;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+ 
+  <h1>👨‍👩‍👧 Choose Your Khaana Bolo Profile</h1>
+  <div class="profile-grid">
+  <div class="profile-card" onclick="selectProfile('shivangi')">
+    <img src="shivangi.jpeg"alt="Shivangi Kulshrestha">
+    <p> Shivangi Kulshrestha</p>
+  </div>
+  <div class="profile-card" onclick="selectProfile('ishita')">
+    <img src="ishita.jpg" alt="Ishita Saxena">
+    <p> Ishita Saxena</p>
+  </div>
+ <div class="profile-card" onclick="selectProfile('mother')">
+  <img src="mother.jpg" alt="Mother">
+  <p>Mother</p>
+</div>
+
+<div class="profile-card" onclick="createGuestProfile()">
+  <img src="plus.png" alt="Add Profile">
+  <p>➕ Add New</p>
+</div>
+
+
+ 
+</div>
+
+
+  <script>function selectProfile(user) {
+    localStorage.setItem("activeUser", user);
+    window.location.href = "home.html";
+  }
+
+  function createGuestProfile() {
+    const name = prompt("Enter profile name:", "Guest");
+    if (name && name.trim() !== "") {
+      localStorage.setItem("activeUser", name.trim());
+      window.location.href = "home.html";
+    }
+  }
+  </script>
+</body>
+</html>

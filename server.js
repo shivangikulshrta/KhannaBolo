@@ -1,12 +1,11 @@
 const express = require('express');
-const path = require('path'); // required for serving index.html
+const path = require('path');
 
 const app = express();
+
+// ✅ Middleware to parse incoming JSON bodies
 app.use(express.json());
 
-
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Static recipe database
 const recipeDatabase = {
@@ -762,15 +761,14 @@ const recipeDatabase = {
 
 };
 
-// Endpoint to get ingredients manually
+
 app.post('/get-ingredients', (req, res) => {
   const dishRaw = req.body.dish;
   if (!dishRaw || typeof dishRaw !== 'string') {
     return res.json({ ingredients: [] });
   }
 
-const dish = dishRaw.toLowerCase().trim().replace(/[.,!?;:]+$/, '');
-
+  const dish = dishRaw.toLowerCase().trim().replace(/[.,!?;:]+$/, '');
   console.log('🔍 Manually searching for:', dish);
 
   const ingredients = recipeDatabase[dish] || [];
@@ -779,11 +777,27 @@ const dish = dishRaw.toLowerCase().trim().replace(/[.,!?;:]+$/, '');
   res.json({ ingredients });
 });
 
-// Serve index.html by default
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// 🍱 API to fetch all dish info
+app.get('/api/dishes', (req, res) => {
+  const dishes = Object.entries(recipeDatabase).map(([name, ingredients]) => {
+    const cost = ingredients.reduce((total, item) => total + item.price, 0);
+    return {
+      name,
+      ingredients: ingredients.map(i => i.name),
+      cost
+    };
+  });
+  res.json(dishes);
 });
 
+// 🏠 Default route — serve home.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'select-profile.html'));
+});
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// ✅ Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);

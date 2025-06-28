@@ -1,4 +1,4 @@
-/* Reset and Base */
+/* Reset & Base */
 * {
   margin: 0;
   padding: 0;
@@ -7,137 +7,186 @@
 
 body {
   font-family: 'Segoe UI', 'Poppins', sans-serif;
-  background: linear-gradient(120deg, #ffe2e2, #fffaf0);
-  color: #333;
-  padding: 20px;
+  background: linear-gradient(120deg, #ffd6d6, #ffecec);
+  color: #222;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-}
-
-.container {
-  max-width: 700px;
-  width: 100%;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  text-align: center;
-}
-
-/* Headings */
-h1 {
-  font-size: 2.2rem;
-  color: #ff5e78;
-  margin-bottom: 8px;
-}
-
-.tagline {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 30px;
-}
-
-/* Button Style */
-button {
-  background-color: #ff5e78;
-  color: white;
-  border: none;
-  padding: 14px 28px;
-  font-size: 1rem;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
-  transition: all 0.3s ease;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
   position: relative;
+  animation: gradientShift 20s ease infinite;
 }
 
-button:hover {
-  background-color: #e44c65;
-  transform: scale(1.05);
+/* 🍔 Emoji Confetti Background */
+body::before {
+  content: "🍕 🍛 🍔 🥗 🍲 🍦 🥞 🌮 🍟";
+  font-size: 6rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  opacity: 0.15;
+  animation: floatText 15s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
-button::after {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  border-radius: 50px;
-  background: rgba(255, 94, 120, 0.1);
-  z-index: -1;
-  animation: pulse 2s infinite;
+@keyframes floatText {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
 }
 
-/* Mic pulse animation */
-@keyframes pulse {
+@keyframes gradientShift {
   0% {
-    transform: scale(1);
-    opacity: 0.7;
+    background: linear-gradient(120deg, #ffd6d6, #ffecec);
   }
   50% {
-    transform: scale(1.1);
-    opacity: 0.2;
+    background: linear-gradient(120deg, #ffecec, #ffd6d6);
   }
   100% {
-    transform: scale(1);
-    opacity: 0.7;
+    background: linear-gradient(120deg, #ffd6d6, #ffecec);
   }
 }
 
-/* Spoken text */
-.spoken-text {
-  margin-top: 20px;
-  font-style: italic;
-  color: #555;
-  min-height: 20px;
+/* Container */
+.container {
+  max-width: 900px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards;
+  position: relative;
+  z-index: 1;
+  margin: 40px 0;
+  transition: all 0.3s ease;
 }
 
-/* Results */
-#results {
-  margin-top: 30px;
-  text-align: left;
-}
-
-#results h2 {
-  color: #333;
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-}
-
-/* Ingredient list */
-.ingredient-list {
-  list-style: none;
-  padding: 0;
-}
-
-.ingredient-list li {
-  background: #ffeef2;
-  margin: 10px 0;
-  padding: 12px 16px;
-  border-left: 5px solid #ff5e78;
-  border-radius: 10px;
-  font-size: 1rem;
-  color: #333;
-  animation: fadeIn 0.5s ease-in-out;
-  transition: transform 0.3s ease;
-}
-
-.ingredient-list li:hover {
-  background: #ffdee4;
-  transform: translateX(5px);
-}
-
-/* Fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
+@keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Headings */
+.main-heading {
+  font-size: 3.2rem;
+  color: #ff4d6d;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #ff4d6d;
+  animation: typing 2.5s steps(30, end), blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+.tagline {
+  font-size: 1.3rem;
+  color: #777;
+  margin-bottom: 30px;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.6; transform: scale(1); }
+}
+
+/* Input field (Enter dish name) */
+input[type="text"], .input-wrapper input {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  border: 2px solid #ffc0cb;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px #ff5e78;
+  border-color: #ff5e78;
+}
+
+/* Buttons */
+.btn, button {
+  background-color: #ff5e78;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
+  transition: 0.3s ease;
+  animation: popFade 0.8s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px;
+}
+
+.btn:hover, button:hover {
+  background-color: #e44c65;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 94, 120, 0.5);
+}
+
+.btn.secondary {
+  background-color: #ffc0cb;
+  color: #333;
+}
+
+@keyframes popFade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Home Button */
+.home-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ff5e78;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.home-btn:hover {
+  background-color: #e44c65;
+  transform: scale(1.05);
 }
 
 /* Footer */
@@ -145,4 +194,19 @@ footer {
   margin-top: 40px;
   font-size: 0.9rem;
   color: #999;
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+/* Fun bounce entry for cards */
+.card {
+  animation: bounceEntry 0.8s ease;
+}
+
+@keyframes bounceEntry {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome | Khaana Bolo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container center">
+    <h1 class="main-heading">🍽️ Welcome to <span style="color:#ff5e78;">Khaana Bolo</span></h1>
+    
+    <!-- 👤 Dynamic User Welcome -->
+    <h2 id="welcome-user" style="margin-top: 10px; font-weight: normal; color: #555;"></h2>
+    
+    <p class="tagline">Just say it or type it — your recipe cart gets ready! 🎤</p>
+
+    <a href="index.html" class="btn">👩‍🍳 Start Cooking</a>
+    <a href="top-recipes.html" class="btn secondary">🍛 Explore Recipes</a>
+    <a href="about.html" class="btn secondary">🙋‍♀️ About Us</a>
+  </div>
+
+  <!-- Home Button on all pages -->
+  <a href="home.html" class="home-btn">🏠 Home</a>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const user = localStorage.getItem("activeUser");
+      if (user) {
+        document.getElementById("welcome-user").textContent = `👋 Welcome, ${user}!`;
+      }
+    });
+  </script>
+</body>
+</html>
